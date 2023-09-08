@@ -1,6 +1,7 @@
 import React from "react"
 
-function Header () {
+function Header (currentBioArray) {
+    console.log(currentBioArray,)
 
 return(
 

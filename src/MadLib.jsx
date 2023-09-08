@@ -1,6 +1,8 @@
 import React from "react"
 
-function MadLib () {
+function MadLib (currentBioArray) {
+
+
 
 return(
     <>

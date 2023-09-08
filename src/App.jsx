@@ -8,22 +8,18 @@ import MadLib from "./MadLib"
 
 function App() {
   const MadLibString = createContext([])
-
   const [currentBioArray, setMadLibArray] = useState([])
   
+//Save JSON hero data to array "currentBioArray"
 useEffect(()=>{
   fetch(`http://localhost:3000/heros`)
   .then((r)=> r.json())
       .then((heros) => {
-          heros.forEach((eachHero)=>{
-             let tempArray = []
-             tempArray.push(eachHero)
-             console.log(tempArray)
-             console.log(tempArray.length)
-        
-      //End forEach for each hero
-  })
-  //End second .then
+        let tempArray = new Array()
+             for(let i = 0; i < heros.length; i++) {
+             tempArray.push(heros[i])
+            }
+      setMadLibArray(tempArray) 
 })
 
 }, [])
@@ -31,6 +27,7 @@ useEffect(()=>{
 
   return (
     <>
+      {/* Will use router after starting the program to save mad libs */}
       <MadLibString.Provider value={{currentBioArray, setMadLibArray}}>
         <Header />
         <br></br>
