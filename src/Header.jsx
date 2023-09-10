@@ -8,11 +8,8 @@ import { MadLibContext } from "./App"
 function Header () {
     //Part 2 of importing the Context
     const randomHero = useContext(MadLibContext)
-    // console.log(randomHero.name)
-    // console.log(randomHero.image)
+  
    
-    
-
 return(
 
 <>
@@ -26,8 +23,6 @@ return(
     <p>Loading...</p>
 )
 }
-
-
 </>
 )
 

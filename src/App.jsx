@@ -36,12 +36,21 @@ useEffect(()=>{
 }, [])
 
 //Set the Random Hero to work with until user presses button.
-useEffect(()=>{
-  if (finishedLoading) {
-    let pickRandomHero = rando(loadedHeros)
-    setRandomHero(pickRandomHero)
-  }
-}, [finishedLoading, randomHero])
+  useEffect(()=>{
+    if (finishedLoading) {
+      let pickRandomHero = rando(loadedHeros)
+      setRandomHero(pickRandomHero)
+      finishedLoading = false
+    }
+  }, [finishedLoading, randomHero])
+
+
+
+function shuffle() {
+  let pickRandomHero = rando(loadedHeros)
+  setRandomHero(pickRandomHero)
+  finishedLoading = false
+}
 
 //Log current Hero loaded.
 useEffect (()=>{
@@ -60,7 +69,8 @@ if(randomHero){
         <br></br>
         <MadLib />
         <br></br>
-        <button >Try another!</button>
+        <button onClick={()=>{shuffle()}}>Try another!</button>
+        
       </MadLibContext.Provider>
     </>
   )
