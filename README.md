@@ -33,7 +33,8 @@ https://en.wikipedia.org/wiki/Deadpool
 https://en.wikipedia.org/wiki/Venom_(character)
 
 Planned expansions:
-Interface with https://dictionaryapi.dev/ which is a free dictionary API, and replace the word in the bio with an input field only if the random word in question is a noun, verb, adverb, or adjective. 
+1) Interface with https://dictionaryapi.dev/ which is a free dictionary API, and replace the word in the bio with an input field only if the random word in question is a noun, verb, adverb, or adjective. 
+2) There will be a prettying-up of the CSS.
 
 ------------------------
 # React + Vite
