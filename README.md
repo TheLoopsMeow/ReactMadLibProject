@@ -15,8 +15,7 @@ This is a not for profit project to showcase my skill in JavaScript, React, HTML
 How this mad lib wepsite works:
 
 A hero is chosen at random initially.
-Their name, picture, and biography are displayed with some words are randomly removed from the text of the description.
-The user inputs a new word into the fields.
+The hero's name, picture, and biography are displayed with some words randomly removed from the text of the description.
 The user can input their choice of words into the randomly chosen input fields within the bio.
 
 Images and bios are refrenced from Wikipedia.  I do not own the rights to the names of the superheros, images or superhero biography text used in the JSON file. Please see the following for more: https://en.wikipedia.org/wiki/Wikipedia:Copyrights#:~:text=The%20text%20of%20Wikipedia%20is,one%20or%20several%20liberal%20licenses.
