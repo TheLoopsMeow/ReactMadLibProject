@@ -7,7 +7,7 @@ import { MadLibContext } from "./App"
 
 function Header () {
     //Part 2 of importing the Context
-    const randomHero = useContext(MadLibContext)
+    const {randomHero, madLibString} = useContext(MadLibContext)
   
    
 return(
