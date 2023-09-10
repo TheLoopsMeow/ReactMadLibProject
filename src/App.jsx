@@ -53,18 +53,6 @@ function shuffle() {
   finishedLoading = false
 }
 
-  //Calculate random true or false based on length of string
-  function  calculateRandom(){
-  //The chances of a word being replaced should be 1 in 15 for an aimicable user experience.
-      let randomNumber = Math.floor(Math.random() * 11)
-      if(randomNumber === 1){
-      return true
-      }
-      else {
-      return false
-      }
-  }
-
   //Removes a word at random, inserts user input field.
   function createMadLib (tempString) {
     let newArray = tempString.split(" ")
@@ -105,33 +93,25 @@ function shuffle() {
 
     // setMadLibString(newArray.slice())
     finalArray = newArray.slice()
-
-
-    for(let i = 0; i < newArray.length; i++){
-        newArray[i] = ""
-    }
 }
 
 //Call the create MadLib function to initialize the Mad Lib String.  Log current Hero loaded.
 useEffect (()=>{
 if(randomHero){
-  console.log(randomHero.name)
-  console.log(randomHero.image)
-  console.log(randomHero.bio)
+
   createMadLib(randomHero.bio)
 
 }
 }, [randomHero])
-console.log(madLibString)
 
 
   return (
     <>
-      {/* Will use router for code to save user generated mad lib */}
+      {/* Will use router for code to save user generated mad lib later*/}
       <MadLibContext.Provider value={{randomHero, madLibString}}>
         <Header />
         <br></br>
-        <MadLib value={madLibString}/>
+        <MadLib value={{randomHero, madLibString}}/>
         <br></br>
         <button onClick={()=>{shuffle()}}>Try another!</button>
         

@@ -6,7 +6,6 @@ import {MadLibContext } from "./App"
 function MadLib () {
     const {randomHero, madLibString} = useContext(MadLibContext)
 
-    console.log(madLibString)
 return(
     <>
     <div id="madLibElement">
