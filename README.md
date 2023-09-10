@@ -1,6 +1,15 @@
 
 Superhero Mad Libs
 
+In the terminal, run the following commands:
+1) npm install -g json-server
+2) json-server --watch db.json
+3) npm install
+4) npm run dev
+
+Then:
+5) copy the URL into a web browser and hit enter
+
 This is a not for profit project to showcase my skill in JavaScript, React, HTML, and CSS.  
 
 How this mad lib wepsite works:
@@ -24,6 +33,8 @@ https://en.wikipedia.org/wiki/Cyclops_(Marvel_Comics)
 https://en.wikipedia.org/wiki/Deadpool
 https://en.wikipedia.org/wiki/Venom_(character)
 
+Planned expansions:
+Interface with https://dictionaryapi.dev/ which is a free dictionary API, and replace the word in the bio with an input field only if the random word in question is a noun, verb, adverb, or adjective. 
 
 ------------------------
 # React + Vite
