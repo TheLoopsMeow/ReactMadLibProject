@@ -23,51 +23,52 @@ function MadLib () {
     const {randomHero, madLibString} = useContext(MadLibContext)
     const [statePartOfSpeech, setPartOfSpeech] = useState("")       
 
-  //Removes a word at random, inserts user input field.
-  function createMadLib (tempString) {
-    let newArray = tempString.split(" ")
-    const keyWord = "keyWord"
-    const subBody = document.createElement("div")
-          subBody.id = "subMadLibElement"
-    const headerBody = document.getElementById("madLibElement")
-    headerBody.appendChild(subBody)
-    // body.appendChild(subBody)
-    let finalArray = []
+        //Removes a word at random, inserts user input field.
+        function createMadLib (tempString) {
+            let newArray = tempString.split(" ")
+            const keyWord = "keyWord"
+            const subBody = document.createElement("div")
+                subBody.id = "subMadLibElement"
+            const headerBody = document.getElementById("madLibElement")
+            headerBody.appendChild(subBody)
+            let finalArray = []
 
-    //Randomly replace a word in the hero bio with "keyWord," if the word is a noun, verb, adverb, or adjective.
-    for(let i = 0; i < (newArray.length) / 15; i++){
-        
-        let randomI = Math.floor(Math.random() * newArray.length)
-        
-                //  determinePartOfSpeech(word)
+            //Randomly replace a word in the hero bio with "keyWord," if the word is a noun, verb, adverb, or adjective.
+            for(let i = 0; i < (newArray.length) / 15; i++){
+                //set random index for newArray
+                let randomI = Math.floor(Math.random() * newArray.length)
 
-        newArray.splice(randomI, 1, keyWord)
-        
-        randomI = 0
-    }
+                // determinePartOfSpeech(newArray[i])
+                //     if (statePartOfSpeech === "noun" || statePartOfSpeech ===  "verb" || statePartOfSpeech === "adverb" || statePartOfSpeech === "adjective" ) {
+                            newArray.splice(randomI, 1, keyWord)
+                    // }
 
-    let newString = newArray.join(" ")
 
-    for(let i = 0; i < newArray.length; i++) {
-        if(newArray[i] === "keyWord") {
-            const newInput = document.createElement("input")
-            newInput.type = "text"
-            newInput.name = "input"
-            const inputSpan = document.createElement("span")
-            
-            subBody.appendChild(inputSpan)
-            inputSpan.appendChild(newInput)
+                //Reset random index.
+                randomI = 0
+            }
+
+            let newString = newArray.join(" ")
+
+            for(let i = 0; i < newArray.length; i++) {
+                if(newArray[i] === "keyWord") {
+                    const newInput = document.createElement("input")
+                    newInput.type = "text"
+                    newInput.name = "input"
+                    const inputSpan = document.createElement("span")
+                    
+                    subBody.appendChild(inputSpan)
+                    inputSpan.appendChild(newInput)
+                }
+                else {     
+                    const newInput = document.createElement("span")
+                    newInput.innerText = newArray[i] + " "
+                    subBody.appendChild(newInput)
+                    }
+            }
+
+            finalArray = newArray.slice()
         }
-        else {     
-            const newInput = document.createElement("span")
-            newInput.innerText = newArray[i] + " "
-            subBody.appendChild(newInput)
-              }
-    }
-
-    // setMadLibString(newArray.slice())
-    finalArray = newArray.slice()
-}
 
 //Call the create MadLib function to initialize the Mad Lib String.  Log current Hero loaded.
 useEffect (()=>{
