@@ -17,7 +17,8 @@ export const MadLibContext = createContext()
   let finishedLoading = false
 
 function App() {
-  const [currentHero, setHero] = useState([])
+  const [loadedHeros, setHero] = useState([])
+  const [randomHero, setRandomHero] = useState()
   
   
 //Save JSON hero data to array "currentBioArray"
@@ -34,16 +35,27 @@ useEffect(()=>{
 
 }, [])
 
-if (finishedLoading) {
-  let randomHero = rando(currentHero)
+//Set the Random Hero to work with until user presses button.
+useEffect(()=>{
+  if (finishedLoading) {
+    let pickRandomHero = rando(loadedHeros)
+    setRandomHero(pickRandomHero)
+  }
+}, [finishedLoading, randomHero])
+
+//Log current Hero loaded.
+useEffect (()=>{
+if(randomHero){
   console.log(randomHero.name)
   console.log(randomHero.image)
 }
+}, [randomHero])
+
 
   return (
     <>
       {/* Will use router for code to save user generated mad lib */}
-      <MadLibContext.Provider value={currentHero}>
+      <MadLibContext.Provider value={randomHero}>
         <Header />
         <br></br>
         <MadLib />
