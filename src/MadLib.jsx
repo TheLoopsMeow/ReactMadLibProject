@@ -3,12 +3,25 @@ import {useContext, createContext, useState} from "react"
 import {MadLibContext } from "./App"
 
 
-function MadLib (currentBioArray) {
-    // const currentBioArray = useContext(MadLibContext)
+function MadLib () {
+    const {randomHero, madLibString} = useContext(MadLibContext)
 
+    console.log(madLibString)
 return(
     <>
-    Mad Lib String
+    <div id="madLibElement">
+    {madLibString ? (
+        <>
+        {madLibString}
+        </>
+
+    ) : (
+        <>
+        <p>Loading...</p>
+        </>
+    )
+    }
+    </div>
     </>
 )
 }

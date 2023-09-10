@@ -70,7 +70,11 @@ function shuffle() {
     let newArray = tempString.split(" ")
     const keyWord = "keyWord"
     const subBody = document.createElement("div")
+    const headerBody = document.getElementById("madLibElement")
+    headerBody.appendChild(subBody)
     // body.appendChild(subBody)
+    let finalArray = []
+
     
     for(let i = 0; i < (newArray.length) / 15; i++){
         
@@ -99,14 +103,16 @@ function shuffle() {
               }
     }
 
-    setMadLibString(newArray.slice())
+    // setMadLibString(newArray.slice())
+    finalArray = newArray.slice()
+
 
     for(let i = 0; i < newArray.length; i++){
         newArray[i] = ""
     }
 }
 
-//Log current Hero loaded.
+//Call the create MadLib function to initialize the Mad Lib String.  Log current Hero loaded.
 useEffect (()=>{
 if(randomHero){
   console.log(randomHero.name)
@@ -125,7 +131,7 @@ console.log(madLibString)
       <MadLibContext.Provider value={{randomHero, madLibString}}>
         <Header />
         <br></br>
-        <MadLib />
+        <MadLib value={madLibString}/>
         <br></br>
         <button onClick={()=>{shuffle()}}>Try another!</button>
         
