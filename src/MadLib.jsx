@@ -5,7 +5,23 @@ import {MadLibContext } from "./App"
 
 
 function MadLib () {
+
+    function determinePartOfSpeech(word) {
+        let part = []
+        useEffect(()=>{
+            fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+            .then((r)=>r.json())
+            .then((data)=>{
+                setPartOfSpeech(data[0].meanings[0].partOfSpeech);
+            }
+            )
+            .catch((error)=>{return console.log("Error fetching dictionary API: " + error)}
+            ),[word]})
+    
+        
+    }
     const {randomHero, madLibString} = useContext(MadLibContext)
+    const [statePartOfSpeech, setPartOfSpeech] = useState("")       
 
   //Removes a word at random, inserts user input field.
   function createMadLib (tempString) {
@@ -18,10 +34,13 @@ function MadLib () {
     // body.appendChild(subBody)
     let finalArray = []
 
-    
+    //Randomly replace a word in the hero bio with "keyWord," if the word is a noun, verb, adverb, or adjective.
     for(let i = 0; i < (newArray.length) / 15; i++){
         
         let randomI = Math.floor(Math.random() * newArray.length)
+        
+                //  determinePartOfSpeech(word)
+
         newArray.splice(randomI, 1, keyWord)
         
         randomI = 0
@@ -31,18 +50,18 @@ function MadLib () {
 
     for(let i = 0; i < newArray.length; i++) {
         if(newArray[i] === "keyWord") {
-            const test = document.createElement("input")
-            test.type = "text"
-            test.name = "input"
+            const newInput = document.createElement("input")
+            newInput.type = "text"
+            newInput.name = "input"
             const inputSpan = document.createElement("span")
             
             subBody.appendChild(inputSpan)
-            inputSpan.appendChild(test)
+            inputSpan.appendChild(newInput)
         }
         else {     
-            const test = document.createElement("span")
-            test.innerText = newArray[i] + " "
-            subBody.appendChild(test)
+            const newInput = document.createElement("span")
+            newInput.innerText = newArray[i] + " "
+            subBody.appendChild(newInput)
               }
     }
 

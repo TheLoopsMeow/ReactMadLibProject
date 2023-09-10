@@ -19,7 +19,7 @@ The hero's name, picture, and biography are displayed with some words randomly r
 The user can input their choice of words into the randomly chosen input fields within the bio.
 
 Images and bios are refrenced from Wikipedia.  I do not own the rights to the names of the superheros, images or superhero biography text used in the JSON file. Please see the following for more: https://en.wikipedia.org/wiki/Wikipedia:Copyrights#:~:text=The%20text%20of%20Wikipedia%20is,one%20or%20several%20liberal%20licenses.
-The 
+
 
 The images, bios, and superhero names are from the following pages:
 https://en.wikipedia.org/wiki/Wolverine_(character)
