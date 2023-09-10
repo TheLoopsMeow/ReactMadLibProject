@@ -12,7 +12,7 @@ Then:
 
 This is a not for profit project to showcase my skill in JavaScript, React, HTML, and CSS.  
 
-How this mad lib wepsite works:
+How this mad lib website works:
 
 A hero is chosen at random initially.
 The hero's name, picture, and biography are displayed with some words randomly removed from the text of the description.
