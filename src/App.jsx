@@ -8,24 +8,42 @@ import MadLib from "./MadLib"
 
 export const MadLibContext = createContext()
 
+  //This function chooses a random hero.
+  function rando (array){
+    let randomNumber = Math.floor(Math.random() * 9)
+    return array[randomNumber]
+  }
+
+  let finishedLoading = false
+
 function App() {
-  const [currentBioArray, setMadLibArray] = useState([])
+  const [currentHero, setHero] = useState([])
+  
   
 //Save JSON hero data to array "currentBioArray"
 useEffect(()=>{
   fetch(`http://localhost:3000/heros`)
   .then((r)=> r.json())
       .then((heros) => {
-      setMadLibArray(heros) 
+      setHero(heros) 
+      finishedLoading = true
 })
+        .catch((error)=>{
+          console.error("Error while fetching data: " + error)
+        })
 
 }, [])
 
+if (finishedLoading) {
+  let randomHero = rando(currentHero)
+  console.log(randomHero.name)
+  console.log(randomHero.image)
+}
 
   return (
     <>
-      {/* Will use router after starting the program to save mad libs */}
-      <MadLibContext.Provider value={currentBioArray}>
+      {/* Will use router for code to save user generated mad lib */}
+      <MadLibContext.Provider value={currentHero}>
         <Header />
         <br></br>
         <MadLib />
