@@ -35,17 +35,14 @@ useEffect(()=>{
 
 }, [])
 
-//Set the Random Hero to work with until user presses button.
+//initial shuffle function must be called in useEffect
   useEffect(()=>{
     if (finishedLoading) {
-      let pickRandomHero = rando(loadedHeros)
-      setRandomHero(pickRandomHero)
-      finishedLoading = false
+      shuffle()
     }
   }, [finishedLoading, randomHero])
 
-
-
+//Set the Random Hero to work with.
 function shuffle() {
   let pickRandomHero = rando(loadedHeros)
   setRandomHero(pickRandomHero)
@@ -57,6 +54,7 @@ useEffect (()=>{
 if(randomHero){
   console.log(randomHero.name)
   console.log(randomHero.image)
+  console.log(randomHero.bio)
 }
 }, [randomHero])
 
