@@ -4,10 +4,14 @@ import {MadLibContext } from "./App"
 
 
 function MadLib () {
+    let biographyArray = []
+    let biographyString = ""
+
 
     function determinePartOfSpeech(partOfSpeechArray) {
         let tempArray = []
         for(let i = 0; i < partOfSpeechArray.length; i++ ) {
+
             fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${partOfSpeechArray[i]}`)
             .then((r)=>r.json())
             .then((data)=>{
@@ -15,7 +19,7 @@ function MadLib () {
                 tempArray.push(data[0].meanings[0].partOfSpeech)
                 console.log("This is the tempArray inside the function: " + tempArray)
                 setPartOfSpeechArray([...tempArray])
-                console.log("This is the partOfSpeechArray in the function :" + partOfSpeechArray)
+               
             }
             )
             .catch((error)=>{return console.log("Error fetching dictionary API: " + error)})
@@ -35,9 +39,6 @@ function MadLib () {
             const headerBody = document.getElementById("madLibElement")
             headerBody.appendChild(subBody)
             let finalArray = []
-
-            //Copy the current hero bio array for use to determine what part of speech each element in the array is.
-            setPartOfSpeechArray([...newArray])
 
             //Randomly replace a word in the hero bio with "keyWord," if the word is a noun, verb, adverb, or adjective.
             for(let i = 0; i < (newArray.length) / 15; i++){
@@ -70,17 +71,28 @@ function MadLib () {
             finalArray = newArray.slice()
         }
 
+//Copy the current hero bio array for use to determine what part of speech each element in the array is.
+    useEffect(()=>{
+        if(randomHero) {
+            biographyString = randomHero.bio
+            biographyArray = biographyString.split(" ")
+        }
+              console.log("This is the biography Array :" + biographyArray)
+    })
 
 //Call the create MadLib function to initialize the Mad Lib String.  Log current Hero loaded.
-useEffect (()=>{
+    useEffect (()=>{
     randomHero ? createMadLib(randomHero.bio) : null
     }, [randomHero])
 
     console.log("This is the partOfSpeechArray: " + partOfSpeechArray)
-    useEffect(()=>{
-        determinePartOfSpeech(partOfSpeechArray)
-    },[])
 
+    useEffect(()=>{
+        console.log(biographyArray)
+
+        determinePartOfSpeech(biographyArray)
+        console.log("This is the partOfSpeechArray after the function :" + partOfSpeechArray)
+    },[randomHero])
 
 return(
     <>
