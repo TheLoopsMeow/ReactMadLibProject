@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Cedarville+Cursive');
+@import url('https://fonts.googleapis.com/css?family=Bangers');
 
 #root {
   max-width: 1280px;
@@ -19,12 +20,14 @@ body {
 #name {
   font-family: 'Times New Roman', Times, serif;
   font-size: 4vw;
+  text-shadow: 10px 10px 10px black;
   color: rgb(174, 88, 88)
+  
 }
 
 span {
-  font-family: serif;
-  font-size: 1.4vw;
+  font-family: 'Bangers', serif;
+  font-size: 2vw;
   text-shadow: 20px 20px 10px black;
   font-weight: bold;
   color: whitesmoke;
@@ -43,12 +46,16 @@ input {
   color: rgb(222, 209, 224);
   text-shadow: 5px 5px 5px rgb(61, 5, 62);
   font-family: 'Cedarville Cursive';
-  font-size: 5vw;
+  font-size: 8vw;
 }
 
 #titleFlash {
   color: rgb(42, 39, 42);
   text-shadow: 5px 5px 5px rgb(115, 20, 117);
   font-family: 'Cedarville Cursive';
-  font-size: 5vw;
+  font-size: 8vw;
+}
+
+#try {
+ font-size: 1vw;
 }

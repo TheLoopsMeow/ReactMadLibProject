@@ -66,7 +66,7 @@ function shuffle() {
         <br></br>
         <MadLib value={{randomHero, madLibString }}/>
         <br></br>
-        <button onClick={()=>{shuffle()}}>Try another!</button>
+        <button onClick={()=>{shuffle()}}><span id="pow">POW!  </span><span id="try">Try another!</span></button>
         
       </MadLibContext.Provider>
     </>
