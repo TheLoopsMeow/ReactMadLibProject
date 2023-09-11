@@ -4,29 +4,29 @@ import {MadLibContext } from "./App"
 
 
 function MadLib () {
+
     let biographyArray = []
     let biographyString = ""
 
-
-    function determinePartOfSpeech(partOfSpeechArray) {
+    function determinePartOfSpeech(partOfSpeechArray, setDeterminePartOfSpeechLoading) {
         let tempArray = []
         for(let i = 0; i < partOfSpeechArray.length; i++ ) {
-
+            //Using setTimeout to prevent the dictionary API from stopping responses due to too many calls.
+          
             fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${partOfSpeechArray[i]}`)
             .then((r)=>r.json())
             .then((data)=>{
-                // setPartOfSpeech(data[0].meanings[0].partOfSpeech);
                 tempArray.push(data[0].meanings[0].partOfSpeech)
-                console.log("This is the tempArray inside the function: " + tempArray)
+            
                 setPartOfSpeechArray([...tempArray])
-               
             }
             )
             .catch((error)=>{return console.log("Error fetching dictionary API: " + error)})
-        }
-        
+          
+            }
     }
     const {randomHero, madLibString} = useContext(MadLibContext)
+
     //First, this will be set to have the same elements as the words in the hero biography, then it will be changed to contain the corresponding part of speech of each word instead.
     const [partOfSpeechArray, setPartOfSpeechArray] = useState([])   
 
@@ -42,9 +42,20 @@ function MadLib () {
 
             //Randomly replace a word in the hero bio with "keyWord," if the word is a noun, verb, adverb, or adjective.
             for(let i = 0; i < (newArray.length) / 15; i++){
+
                 //set random index for newArray
                 let randomI = Math.floor(Math.random() * newArray.length)
-                newArray.splice(randomI, 1, keyWord)
+
+                //If the part of speech is a noun, verb, adverb, or adjective, it may randomly be replaced with an input field.  Or, because the dictionary API may stop accepting requests, if the word is longer than 3 letters, it may be replaced with an input field as well.
+                if(partOfSpeechArray[i] === "noun" || partOfSpeechArray[i] === "verb" || partOfSpeechArray[i] === "adverb" || partOfSpeechArray[i] === "adjective") {
+                    newArray.splice(randomI, 1, keyWord)
+
+                }
+                //if the word length is longer than 3 letters, it can be replaced.
+                else if(newArray[i].length > 3){
+                    newArray.splice(randomI, 1, keyWord)
+                }
+
                 //Reset random index.
                 randomI = 0
             }
@@ -52,6 +63,7 @@ function MadLib () {
             let newString = newArray.join(" ")
            
             for(let i = 0; i < newArray.length; i++) {
+
                 if(newArray[i] === "keyWord") {
                     const newInput = document.createElement("input")
                     newInput.type = "text"
@@ -66,8 +78,9 @@ function MadLib () {
                     newInput.innerText = newArray[i] + " "
                     subBody.appendChild(newInput)
                     }
+               
             }
-
+ 
             finalArray = newArray.slice()
         }
 
@@ -77,21 +90,15 @@ function MadLib () {
             biographyString = randomHero.bio
             biographyArray = biographyString.split(" ")
         }
-              console.log("This is the biography Array :" + biographyArray)
     })
 
 //Call the create MadLib function to initialize the Mad Lib String.  Log current Hero loaded.
     useEffect (()=>{
-    randomHero ? createMadLib(randomHero.bio) : null
+        randomHero ? createMadLib(randomHero.bio) : null
     }, [randomHero])
 
-    console.log("This is the partOfSpeechArray: " + partOfSpeechArray)
-
     useEffect(()=>{
-        console.log(biographyArray)
-
         determinePartOfSpeech(biographyArray)
-        console.log("This is the partOfSpeechArray after the function :" + partOfSpeechArray)
     },[randomHero])
 
 return(

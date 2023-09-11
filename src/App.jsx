@@ -23,8 +23,7 @@ function App() {
   const [randomHero, setRandomHero] = useState()
   //The random her's randomHero.bio is parsed to a mad lib string.
   const [madLibString, setMadLibString] = useState()
-  
-  
+
 //Save JSON hero data to array "currentBioArray"
 useEffect(()=>{
   fetch(`http://localhost:3000/heros`)
@@ -65,7 +64,7 @@ function shuffle() {
       <MadLibContext.Provider value={{randomHero, madLibString}}>
         <Header />
         <br></br>
-        <MadLib value={{randomHero, madLibString}}/>
+        <MadLib value={{randomHero, madLibString }}/>
         <br></br>
         <button onClick={()=>{shuffle()}}>Try another!</button>
         
