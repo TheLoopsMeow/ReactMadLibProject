@@ -1,4 +1,5 @@
 import React from "react"
+import './App.css'
 import {useState, useEffect, useContext, createContext } from "react"
 import {MadLibContext } from "./App"
 

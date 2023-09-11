@@ -5,10 +5,36 @@
   text-align: center;
 }
 
-.Header {
- align: center;
+body {
+  background-image: url(./city3.png);
+  background-position: top;
+  background-attachment: fixed;
+  scrollbar-color: yellow;
+  
+
 }
 
-.MadLib {
-  align: center;
+#name {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 4vw;
 }
+
+span {
+  font-family: serif;
+  font-size: 1.4vw;
+  text-shadow: 20px 20px 10px black;
+  font-weight: bold;
+  color: whitesmoke;
+  
+}
+
+#subMadLibElement {
+  background-color:rgba(0,0,0, 0.5);
+}
+
+input {
+  background-color: rgba(0,0,0, 0.5);
+}
+
+
+
